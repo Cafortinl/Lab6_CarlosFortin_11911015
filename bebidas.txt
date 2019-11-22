@@ -1,1 +1,1 @@
-12345678;c;a;45.0;23.0;false;5;23.0;4;Tue Nov 12 15:25:40 CST 2019;rgtetj,;
+12345678;Coca Cola;Coca Cola;24.0;0.0;true;1;20.0;6;Tue Nov 21 15:42:14 CST 2034;Cafe-99,;87654321;Pepsi;7-Up;34.0;0.0;false;2;17.0;3;Tue Nov 24 15:43:33 CST 2026;No,;

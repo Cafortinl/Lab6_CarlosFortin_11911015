@@ -7,10 +7,13 @@ package lab6_carlosfortin_11911015;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -69,6 +72,27 @@ public class Principal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         tf_lote = new javax.swing.JTextField();
         jd_modificarproducto = new javax.swing.JDialog();
+        jLabel16 = new javax.swing.JLabel();
+        ff_modcod = new javax.swing.JFormattedTextField();
+        jButton4 = new javax.swing.JButton();
+        tf_modmarca = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        tf_modnombre = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        tf_modcantaz = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        tf_modcantal = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        cb_modnacional = new javax.swing.JComboBox<>();
+        jButton9 = new javax.swing.JButton();
+        tf_modlote = new javax.swing.JTextField();
+        jButton10 = new javax.swing.JButton();
+        tf_modprecio = new javax.swing.JTextField();
+        jButton11 = new javax.swing.JButton();
+        sp_modcant = new javax.swing.JSpinner();
+        jButton12 = new javax.swing.JButton();
+        dc_modvencimiento = new com.toedter.calendar.JDateChooser();
+        jButton13 = new javax.swing.JButton();
         jd_cotizacion = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -243,15 +267,181 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel16.setText("Modificar");
+
+        try {
+            ff_modcod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jButton4.setText("Modificar codigo");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        jButton5.setText("Modificar marca");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        jButton6.setText("Modificar nombre");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
+        jButton7.setText("Modificar cantidad azucar");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+
+        jButton8.setText("Modificar cantidad alcohol");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+
+        cb_modnacional.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+
+        jButton9.setText("Modificar nacionalidad");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
+
+        jButton10.setText("Modificar lote");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
+
+        jButton11.setText("Modificar precio");
+
+        jButton12.setText("Modifficar cantidad");
+
+        jButton13.setText("Modificar Vencimiento");
+
         javax.swing.GroupLayout jd_modificarproductoLayout = new javax.swing.GroupLayout(jd_modificarproducto.getContentPane());
         jd_modificarproducto.getContentPane().setLayout(jd_modificarproductoLayout);
         jd_modificarproductoLayout.setHorizontalGroup(
             jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                .addGap(459, 459, 459)
+                .addComponent(jLabel16)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificarproductoLayout.createSequentialGroup()
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jButton4))
+                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jButton5)))
+                        .addGap(124, 124, 124)
+                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 536, Short.MAX_VALUE))
+                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addGap(144, 144, 144)
+                                .addComponent(jButton10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton13))))
+                    .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton6)
+                            .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ff_modcod, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                                .addComponent(tf_modmarca)
+                                .addComponent(tf_modnombre)))
+                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                .addGap(172, 172, 172)
+                                .addComponent(cb_modnacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(263, 263, 263)
+                                .addComponent(sp_modcant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_modificarproductoLayout.createSequentialGroup()
+                                        .addGap(123, 123, 123)
+                                        .addComponent(jButton9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton12))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_modificarproductoLayout.createSequentialGroup()
+                                        .addGap(133, 133, 133)
+                                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButton11)
+                                            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                                                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(tf_modcantaz, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tf_modcantal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(148, 148, 148)
+                                                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(tf_modlote, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(tf_modprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dc_modvencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(27, 27, 27))
         );
         jd_modificarproductoLayout.setVerticalGroup(
             jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel16)
+                .addGap(31, 31, 31)
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ff_modcod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_modcantaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_modlote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dc_modvencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(jButton7)
+                            .addComponent(jButton10)))
+                    .addGroup(jd_modificarproductoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton13)))
+                .addGap(32, 32, 32)
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_modmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_modcantal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_modprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton8)
+                    .addComponent(jButton11))
+                .addGap(27, 27, 27)
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_modnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_modnacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sp_modcant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton9)
+                    .addComponent(jButton12))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_cotizacionLayout = new javax.swing.GroupLayout(jd_cotizacion.getContentPane());
@@ -303,6 +493,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jb_modprod.setText("Modificar producto");
+        jb_modprod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_modprodMouseClicked(evt);
+            }
+        });
 
         jButton1.setText("Agregar a Cotizacion");
 
@@ -385,7 +580,6 @@ public class Principal extends javax.swing.JFrame {
                 double precio=Double.parseDouble(tf_precio.getText());
                 int cantidad=Integer.parseInt(sp_cantidad.getValue().toString());
                 Date vencimiento=dc_vencimiento.getDate();
-                File archivo=new File("./bebidas.txt");
 
                 if(inventario.size()>0){
                     for (Bebida b : inventario) {
@@ -394,13 +588,13 @@ public class Principal extends javax.swing.JFrame {
                         else{
                             inventario.add(new Bebida(c, nm, n, a, al, x, lote, precio, cantidad, vencimiento,colorantes));
                             actualizarTabla();
-                            escribir(archivo);
+                            escribir();
                         }
                     }
                 }
                 else{
                    inventario.add(new Bebida(c, nm, n, a, al, x, lote, precio, cantidad, vencimiento,colorantes));
-                    escribir(archivo);
+                   escribir();
                    actualizarTabla(); 
                 }
             }catch(Exception e){
@@ -422,7 +616,58 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jb_agregarMouseClicked
 
-    public void escribir(File archivo) throws IOException{
+    private void jb_modprodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_modprodMouseClicked
+        //Bebida temp;
+        if(Tabla_inventario.getSelectedRow()>=0){
+            jd_modificarproducto.setVisible(true);
+            jd_modificarproducto.pack();
+            for (Bebida bebida : inventario) {
+                if(Tabla_inventario.getValueAt(0, Tabla_inventario.getSelectedRow()).equals(bebida.getCodigo()))
+                    temp=bebida;
+            }
+        }
+    }//GEN-LAST:event_jb_modprodMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        temp.setCodigo(Integer.parseInt(ff_modcod.getText()));
+        ff_modcod.setText("");
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        temp.setNombre_marca(tf_modmarca.getText());
+        tf_modmarca.setText("");
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        temp.setNombre_bebida(tf_modnombre.getText());
+        tf_modnombre.setText("");
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        temp.setCant_azucar(Double.parseDouble(tf_modcantaz.getText()));
+        tf_modcantaz.setText("");
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        temp.setCant_alcohol(Double.parseDouble(tf_modcantal.getText()));
+        tf_modcantal.setText("");
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        if(cb_modnacional.getSelectedItem().toString().equals("Si"))
+            temp.setNacional(true);
+        else
+            temp.setNacional(false);
+        
+        cb_modnacional.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        temp.setNo_lote(Integer.parseInt(tf_modlote.getText()));
+        tf_modlote.setText("");
+    }//GEN-LAST:event_jButton10MouseClicked
+
+    public void escribir() throws IOException{
         FileWriter fw=null;
         BufferedWriter bw=null;
         try {
@@ -439,7 +684,7 @@ public class Principal extends javax.swing.JFrame {
                 bw.write(b.getPrecio()+";");
                 bw.write(b.getCantidad()+";");
                 bw.write(b.getFecha_vencimiento().toString()+";");
-                bw.write(b.getColoresS()+";");
+                bw.write(b.getColoresS()+";"+"\n");
             }
             bw.flush();
         } catch (Exception e) {
@@ -449,9 +694,8 @@ public class Principal extends javax.swing.JFrame {
     }
     
     public void leerInventario(){
-        File archivo=new File("./bebidas.txt");
         Scanner leer=null;
-        //inventario=new ArrayList();
+        inventario=new ArrayList();
         try {
             if(archivo.exists()){
                 leer=new Scanner(archivo);
@@ -461,7 +705,7 @@ public class Principal extends javax.swing.JFrame {
                 }
                 leer.close();
             }
-        } catch (Exception e) {
+        } catch (InputMismatchException|FileNotFoundException|ParseException e) {
         }
     }
     
@@ -536,12 +780,25 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla_inventario;
+    private javax.swing.JComboBox<String> cb_modnacional;
     private javax.swing.JComboBox<String> cb_nacional;
+    private com.toedter.calendar.JDateChooser dc_modvencimiento;
     private com.toedter.calendar.JDateChooser dc_vencimiento;
     private javax.swing.JFormattedTextField ff_codigo;
+    private javax.swing.JFormattedTextField ff_modcod;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -549,6 +806,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -565,13 +823,22 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_cotizacion;
     private javax.swing.JDialog jd_modificarproducto;
     private javax.swing.JSpinner sp_cantidad;
+    private javax.swing.JSpinner sp_modcant;
     private javax.swing.JTextField tf_alcohol;
     private javax.swing.JTextField tf_azucar;
     private javax.swing.JTextField tf_colorantes;
     private javax.swing.JTextField tf_lote;
     private javax.swing.JTextField tf_marca;
+    private javax.swing.JTextField tf_modcantal;
+    private javax.swing.JTextField tf_modcantaz;
+    private javax.swing.JTextField tf_modlote;
+    private javax.swing.JTextField tf_modmarca;
+    private javax.swing.JTextField tf_modnombre;
+    private javax.swing.JTextField tf_modprecio;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_precio;
     // End of variables declaration//GEN-END:variables
     ArrayList<Bebida> inventario=new ArrayList();
+    File archivo=new File("./bebidas.txt");
+    Bebida temp;
 }
