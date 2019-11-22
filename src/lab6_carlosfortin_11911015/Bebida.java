@@ -22,12 +22,12 @@ public class Bebida {
     private ArrayList<String> colorantes=new ArrayList();
     private double precio;
     private int cantidad;
-    private Date fecha_vencimiento;
+    private String fecha_vencimiento;
 
     public Bebida() {
     }
 
-    public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, Date fecha_vencimiento, String colorantes) {
+    public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, String fecha_vencimiento, String colorantes) {
         this.codigo = codigo;
         this.nombre_marca = nombre_marca;
         this.nombre_bebida = nombre_bebida;
@@ -44,7 +44,7 @@ public class Bebida {
         }
     }
 
-    public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, String fecha_vencimiento, String colorantes) throws ParseException {
+    /*public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, String fecha_vencimiento, String colorantes) throws ParseException {
         this.codigo = codigo;
         this.nombre_marca = nombre_marca;
         this.nombre_bebida = nombre_bebida;
@@ -54,13 +54,13 @@ public class Bebida {
         this.no_lote = no_lote;
         this.precio = precio;
         this.cantidad = cantidad;
-        SimpleDateFormat d=new SimpleDateFormat();
+        SimpleDateFormat d=new SimpleDateFormat("dd/MM/yyyy");
         this.fecha_vencimiento = d.parse(fecha_vencimiento);
         Scanner leer=new Scanner(colorantes);
         while(leer.hasNext()){
             this.colorantes.add(leer.next());
         }
-    }
+    }*/
     
     public int getCodigo() {
         return codigo;
@@ -142,11 +142,11 @@ public class Bebida {
         this.cantidad = cantidad;
     }
 
-    public Date getFecha_vencimiento() {
+    public String getFecha_vencimiento() {
         return fecha_vencimiento;
     }
 
-    public void setFecha_vencimiento(Date fecha_vencimiento) {
+    public void setFecha_vencimiento(String fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
     }
     

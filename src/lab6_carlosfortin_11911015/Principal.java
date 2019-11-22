@@ -5,9 +5,11 @@
  */
 package lab6_carlosfortin_11911015;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,11 +33,17 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
-        initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        leerInventario();
-        System.out.println(inventario);
-        actualizarTabla();
+        try {
+            initComponents();
+            this.setExtendedState(MAXIMIZED_BOTH);
+            leerInventario();
+            System.out.println(inventario);
+            actualizarTabla();
+        } catch (ParseException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -579,7 +590,7 @@ public class Principal extends javax.swing.JFrame {
                 String colorantes=tf_colorantes.getText();
                 double precio=Double.parseDouble(tf_precio.getText());
                 int cantidad=Integer.parseInt(sp_cantidad.getValue().toString());
-                Date vencimiento=dc_vencimiento.getDate();
+                String vencimiento=dc_vencimiento.getDate().toString();
 
                 if(inventario.size()>0){
                     for (Bebida b : inventario) {
@@ -692,21 +703,24 @@ public class Principal extends javax.swing.JFrame {
         bw.close();
         fw.close();
     }
-    
-    public void leerInventario(){
-        Scanner leer=null;
-        inventario=new ArrayList();
+    //inventario.add(new Bebida((Integer)tokens[0],(String)tokens[1],(String)tokens[2],(Double)tokens[3],(Double)tokens[4],(Boolean)tokens[5],(Integer)tokens[6],(Double)tokens[7],(Integer)tokens[8],(String)tokens[9],(String)tokens[10]));
+    public void leerInventario() throws FileNotFoundException, ParseException, IOException{
+        
+        FileReader fr=null;
+        BufferedReader br=null;
         try {
-            if(archivo.exists()){
-                leer=new Scanner(archivo);
-                leer.useDelimiter(";");
-                while(leer.hasNext()){
-                    inventario.add(new Bebida(leer.nextInt(),leer.next(),leer.next(),leer.nextDouble(),leer.nextDouble(),leer.nextBoolean(),leer.nextInt(),leer.nextDouble(),leer.nextInt(),leer.next(),leer.next()));
-                }
-                leer.close();
+            fr=new FileReader(archivo);
+            br=new BufferedReader(fr);
+            String linea;
+            while((linea=br.readLine())!=null){
+                Object[] tokens=linea.split(";");
+                inventario.add(new Bebida(Integer.parseInt(tokens[0].toString()),(String)tokens[1],(String)tokens[2],Double.parseDouble(tokens[3].toString()),Double.parseDouble(tokens[4].toString()),Boolean.parseBoolean(tokens[5].toString()),Integer.parseInt(tokens[6].toString()),Double.parseDouble(tokens[7].toString()),Integer.parseInt(tokens[8].toString()),(String)tokens[9],(String)tokens[10]));
             }
-        } catch (InputMismatchException|FileNotFoundException|ParseException e) {
+        } catch (NullPointerException e) {
         }
+        br.close();
+        fr.close();
+        
     }
     
     public void actualizarTabla(){
