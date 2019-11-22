@@ -2,6 +2,7 @@ package lab6_carlosfortin_11911015;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Bebida {
     public Bebida() {
     }
 
-    public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, Date fecha_vencimiento) {
+    public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, Date fecha_vencimiento, String colorantes) {
         this.codigo = codigo;
         this.nombre_marca = nombre_marca;
         this.nombre_bebida = nombre_bebida;
@@ -35,6 +36,10 @@ public class Bebida {
         this.precio = precio;
         this.cantidad = cantidad;
         this.fecha_vencimiento = fecha_vencimiento;
+        Scanner leer=new Scanner(colorantes);
+        while(leer.hasNext()){
+            this.colorantes.add(leer.next());
+        }
     }
 
     public int getCodigo() {
