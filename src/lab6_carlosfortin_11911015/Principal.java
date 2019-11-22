@@ -5,6 +5,10 @@
  */
 package lab6_carlosfortin_11911015;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -23,6 +27,9 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        leerInventario();
+        System.out.println(inventario);
+        actualizarTabla();
     }
 
     /**
@@ -378,7 +385,7 @@ public class Principal extends javax.swing.JFrame {
                 double precio=Double.parseDouble(tf_precio.getText());
                 int cantidad=Integer.parseInt(sp_cantidad.getValue().toString());
                 Date vencimiento=dc_vencimiento.getDate();
-
+                File archivo=new File("./bebidas.txt");
 
                 if(inventario.size()>0){
                     for (Bebida b : inventario) {
@@ -387,11 +394,13 @@ public class Principal extends javax.swing.JFrame {
                         else{
                             inventario.add(new Bebida(c, nm, n, a, al, x, lote, precio, cantidad, vencimiento,colorantes));
                             actualizarTabla();
+                            escribir(archivo);
                         }
                     }
                 }
                 else{
                    inventario.add(new Bebida(c, nm, n, a, al, x, lote, precio, cantidad, vencimiento,colorantes));
+                    escribir(archivo);
                    actualizarTabla(); 
                 }
             }catch(Exception e){
@@ -413,6 +422,48 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jb_agregarMouseClicked
 
+    public void escribir(File archivo) throws IOException{
+        FileWriter fw=null;
+        BufferedWriter bw=null;
+        try {
+            fw=new FileWriter(archivo,false);
+            bw=new BufferedWriter(fw);
+            for (Bebida b : inventario) {
+                bw.write(b.getCodigo()+";");
+                bw.write(b.getNombre_marca()+";");
+                bw.write(b.getNombre_bebida()+";");
+                bw.write(b.getCant_azucar()+";");
+                bw.write(b.getCant_alcohol()+";");
+                bw.write(b.isNacional()+";");
+                bw.write(b.getNo_lote()+";");
+                bw.write(b.getPrecio()+";");
+                bw.write(b.getCantidad()+";");
+                bw.write(b.getFecha_vencimiento().toString()+";");
+                bw.write(b.getColoresS()+";");
+            }
+            bw.flush();
+        } catch (Exception e) {
+        }
+        bw.close();
+        fw.close();
+    }
+    
+    public void leerInventario(){
+        File archivo=new File("./bebidas.txt");
+        Scanner leer=null;
+        //inventario=new ArrayList();
+        try {
+            if(archivo.exists()){
+                leer=new Scanner(archivo);
+                leer.useDelimiter(";");
+                while(leer.hasNext()){
+                    inventario.add(new Bebida(leer.nextInt(),leer.next(),leer.next(),leer.nextDouble(),leer.nextDouble(),leer.nextBoolean(),leer.nextInt(),leer.nextDouble(),leer.nextInt(),leer.next(),leer.next()));
+                }
+                leer.close();
+            }
+        } catch (Exception e) {
+        }
+    }
     
     public void actualizarTabla(){
         Tabla_inventario.setModel(new javax.swing.table.DefaultTableModel(

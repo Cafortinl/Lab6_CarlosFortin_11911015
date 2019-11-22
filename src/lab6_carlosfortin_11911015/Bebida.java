@@ -1,5 +1,7 @@
 package lab6_carlosfortin_11911015;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -42,6 +44,24 @@ public class Bebida {
         }
     }
 
+    public Bebida(int codigo, String nombre_marca, String nombre_bebida, double cant_azucar, double cant_alcohol, boolean nacional, int no_lote, double precio, int cantidad, String fecha_vencimiento, String colorantes) throws ParseException {
+        this.codigo = codigo;
+        this.nombre_marca = nombre_marca;
+        this.nombre_bebida = nombre_bebida;
+        this.cant_azucar = cant_azucar;
+        this.cant_alcohol = cant_alcohol;
+        this.nacional = nacional;
+        this.no_lote = no_lote;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        SimpleDateFormat d=new SimpleDateFormat();
+        this.fecha_vencimiento = d.parse(fecha_vencimiento);
+        Scanner leer=new Scanner(colorantes);
+        while(leer.hasNext()){
+            this.colorantes.add(leer.next());
+        }
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -136,6 +156,21 @@ public class Bebida {
     
     public void setColor(String color){
         this.colorantes.add(color);
+    }
+    
+    public String getNacional(){
+        if(nacional)
+            return "Si";
+        else
+            return "No";
+    }
+    
+    public String getColoresS(){
+        String salida="";
+        for (String c : colorantes) {
+            salida+=c+",";
+        }
+        return salida;
     }
 
     @Override
