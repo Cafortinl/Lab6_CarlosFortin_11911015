@@ -106,6 +106,8 @@ public class Principal extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         dc_modvencimiento = new com.toedter.calendar.JDateChooser();
         jButton13 = new javax.swing.JButton();
+        tf_modcolor = new javax.swing.JTextField();
+        jButton15 = new javax.swing.JButton();
         jd_cotizacion = new javax.swing.JDialog();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -152,6 +154,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Precio");
 
         jLabel13.setText("Cantidad");
+
+        sp_cantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel14.setText("Fecha de Vencimiento");
 
@@ -351,6 +355,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        sp_modcant.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jButton12.setText("Modifficar cantidad");
         jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -362,6 +368,13 @@ public class Principal extends javax.swing.JFrame {
         jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton13MouseClicked(evt);
+            }
+        });
+
+        jButton15.setText("Modificar Colorantes");
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton15MouseClicked(evt);
             }
         });
 
@@ -428,7 +441,13 @@ public class Principal extends javax.swing.JFrame {
                                                     .addComponent(tf_modlote, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(tf_modprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dc_modvencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dc_modvencimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modificarproductoLayout.createSequentialGroup()
+                                        .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButton15)
+                                            .addComponent(tf_modcolor, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(20, 20, 20)))))))
                 .addGap(27, 27, 27))
         );
         jd_modificarproductoLayout.setVerticalGroup(
@@ -457,12 +476,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_modmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_modcantal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_modprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_modprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_modcolor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton8)
-                    .addComponent(jButton11))
+                    .addComponent(jButton11)
+                    .addComponent(jButton15))
                 .addGap(27, 27, 27)
                 .addGroup(jd_modificarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_modnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -550,14 +571,14 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Marca", "Nombre", "Cant. Azucar", "Cant. Alcohol", "Nacional", "No. Lote", "Precio", "Cantidad", "Vence"
+                "Codigo", "Marca", "Nombre", "Cant. Azucar", "Cant. Alcohol", "Nacional", "No. Lote", "Precio", "Cantidad", "Vence", "Colorantes"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -614,17 +635,19 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
                         .addComponent(jb_agregarprod)
                         .addGap(350, 350, 350)
                         .addComponent(jb_modprod)
                         .addGap(392, 392, 392)
                         .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -951,6 +974,19 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14MouseClicked
 
+    private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
+        temp.getColorantes().clear();
+        temp.setColorantes(tf_modcolor.getText());
+        tf_modcolor.setText("");
+        temp=null;
+        try {
+            escribir();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        actualizarTabla();
+    }//GEN-LAST:event_jButton15MouseClicked
+
     public void actualizarNoFact() throws IOException{
         File numero=new File("./Cotizaciones/numero_factura.txt");
         FileWriter fw=null;
@@ -1024,14 +1060,14 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Marca", "Nombre", "Cant. Azucar", "Cant. Alcohol", "Lugar de Fabricacion", "No. Lote", "Precio", "Cantidad", "Vence"
+                "Codigo", "Marca", "Nombre", "Cant. Azucar", "Cant. Alcohol", "Nacional", "No. Lote", "Precio", "Cantidad", "Vence", "Colorantes"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1045,7 +1081,7 @@ public class Principal extends javax.swing.JFrame {
         
         DefaultTableModel modelo=(DefaultTableModel)Tabla_inventario.getModel();
         for (Bebida b : inventario) {
-            Object[] inven={b.getCodigo(),b.getNombre_marca(),b.getNombre_bebida(),b.getCant_azucar(),b.getCant_alcohol(),b.isNacional(),b.getNo_lote(),b.getPrecio(),b.getCantidad(),b.getFecha_vencimiento()};
+            Object[] inven={b.getCodigo(),b.getNombre_marca(),b.getNombre_bebida(),b.getCant_azucar(),b.getCant_alcohol(),b.isNacional(),b.getNo_lote(),b.getPrecio(),b.getCantidad(),b.getFecha_vencimiento(),b.getColoresS()};
             modelo.addRow(inven);
         }
         System.out.println(inventario);
@@ -1135,6 +1171,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1177,6 +1214,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_marca;
     private javax.swing.JTextField tf_modcantal;
     private javax.swing.JTextField tf_modcantaz;
+    private javax.swing.JTextField tf_modcolor;
     private javax.swing.JTextField tf_modlote;
     private javax.swing.JTextField tf_modmarca;
     private javax.swing.JTextField tf_modnombre;
@@ -1188,5 +1226,5 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Bebida> cotizados=new ArrayList();
     File archivo=new File("./bebidas.txt");
     Bebida temp;
-    int no_fact;
+    int no_fact=0;
 }

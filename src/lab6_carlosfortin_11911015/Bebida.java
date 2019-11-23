@@ -123,8 +123,12 @@ public class Bebida {
         return colorantes;
     }
 
-    public void setColorantes(ArrayList<String> colorantes) {
-        this.colorantes = colorantes;
+    public void setColorantes(String colorantes) {
+        Scanner leer=new Scanner(colorantes);
+        leer.useDelimiter(",");
+        while(leer.hasNext()){
+            this.colorantes.add(leer.next());
+        }
     }
 
     public double getPrecio() {
