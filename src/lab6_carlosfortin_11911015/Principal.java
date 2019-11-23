@@ -106,6 +106,10 @@ public class Principal extends javax.swing.JFrame {
         dc_modvencimiento = new com.toedter.calendar.JDateChooser();
         jButton13 = new javax.swing.JButton();
         jd_cotizacion = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla_cot = new javax.swing.JTable();
+        jButton14 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_inventario = new javax.swing.JTable();
@@ -471,15 +475,68 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel17.setText("Cotizacion");
+
+        Tabla_cot.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Producto", "Cantidad", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(Tabla_cot);
+
+        jButton14.setText("Imprimir cotizacion");
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_cotizacionLayout = new javax.swing.GroupLayout(jd_cotizacion.getContentPane());
         jd_cotizacion.getContentPane().setLayout(jd_cotizacionLayout);
         jd_cotizacionLayout.setHorizontalGroup(
             jd_cotizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_cotizacionLayout.createSequentialGroup()
+                .addGroup(jd_cotizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_cotizacionLayout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel17))
+                    .addGroup(jd_cotizacionLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_cotizacionLayout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(jButton14)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jd_cotizacionLayout.setVerticalGroup(
             jd_cotizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_cotizacionLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel17)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jButton14)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -534,6 +591,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton2.setText("Ver productos cotizados");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Eliminar producto");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -820,12 +882,72 @@ public class Principal extends javax.swing.JFrame {
                         int cantidad=Integer.parseInt(JOptionPane.showInputDialog("Cantidad"));
                         cotizados.get(cotizados.size()-1).setCantidad(cantidad);
                         System.out.println(cotizados);
+                        actualizarCot();
                         break;
                     }
                 }
             
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        jd_cotizacion.setVisible(true);
+        jd_cotizacion.pack();
+        jd_cotizacion.setLocationRelativeTo(this);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+        try {                                       
+            FileWriter fw=null;
+            BufferedWriter bw=null;
+            try {
+                File factura=new File("./Cotizaciones/Cotizacion"+no_fact+".txt");
+                double total=0;
+                fw=new FileWriter(factura,false);
+                bw=new BufferedWriter(fw);
+                bw.write("Supermercado El Barrio"+"\n\n");
+                bw.write("Factura#"+no_fact+"                   "+new Date()+"\n\n");
+                bw.write("Nombre"+"            "+"Cantidad"+"          "+"Precio"+"\n\n");
+                for (Bebida b : cotizados) {
+                    bw.write(b.getNombre_bebida()+"                  "+b.getCantidad()+"               "+b.getPrecio()+"\n\n\n");
+                    total+=b.getPrecio()*b.getCantidad();
+                }
+                bw.write("                                                    Total: "+total);
+                bw.flush();
+                total=0;
+            } catch (Exception e) {
+            }
+            bw.close();
+            fw.close();
+            no_fact++;
+            cotizados=new ArrayList();
+                Tabla_cot.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+
+                },
+                new String [] {
+                    "Producto", "Cantidad", "Precio"
+                }
+            ) {
+                Class[] types = new Class [] {
+                    java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                };
+                boolean[] canEdit = new boolean [] {
+                    false, false, false
+                };
+
+                public Class getColumnClass(int columnIndex) {
+                    return types [columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit [columnIndex];
+                }
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton14MouseClicked
 
     public void escribir() throws IOException{
         FileWriter fw=null;
@@ -906,6 +1028,39 @@ public class Principal extends javax.swing.JFrame {
         Tabla_inventario.setModel(modelo);
     }
     
+    public void actualizarCot(){
+        Tabla_cot.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Producto", "Cantidad", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
+        DefaultTableModel modelo=(DefaultTableModel)Tabla_cot.getModel();
+        for (Bebida b : cotizados) {
+            Object[] inven={b.getNombre_bebida(),b.getCantidad(),(b.getPrecio()*b.getCantidad())};
+            modelo.addRow(inven);
+        }
+        Tabla_cot.setModel(modelo);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -942,6 +1097,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla_cot;
     private javax.swing.JTable Tabla_inventario;
     private javax.swing.JComboBox<String> cb_modnacional;
     private javax.swing.JComboBox<String> cb_nacional;
@@ -954,6 +1110,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -970,6 +1127,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -979,6 +1137,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jb_agregar;
     private javax.swing.JButton jb_agregarprod;
     private javax.swing.JButton jb_modprod;
@@ -1005,4 +1164,5 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Bebida> cotizados=new ArrayList();
     File archivo=new File("./bebidas.txt");
     Bebida temp;
+    int no_fact;
 }

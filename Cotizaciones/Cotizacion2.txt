@@ -1,0 +1,10 @@
+Supermercado El Barrio
+
+Factura#2                   Fri Nov 22 18:57:52 CST 2019
+
+Nombre            Cantidad          Precio
+
+qwertt                  3               100.0
+
+
+                                                    Total: 100.0
