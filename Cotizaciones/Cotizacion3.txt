@@ -1,0 +1,19 @@
+Supermercado El Barrio
+
+Factura#3                   Fri Nov 22 19:13:09 CST 2019
+
+Nombre            Cantidad          Precio
+
+Coke                  2               20.0
+
+
+Narajita                  3               34.0
+
+
+qwertt                  1               100.0
+
+
+Fresa                  3               13.0
+
+
+                                                    Total: 281.0

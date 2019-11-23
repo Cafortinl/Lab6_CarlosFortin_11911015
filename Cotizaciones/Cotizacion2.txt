@@ -1,10 +1,13 @@
 Supermercado El Barrio
 
-Factura#2                   Fri Nov 22 18:57:52 CST 2019
+Factura#2                   Fri Nov 22 19:12:29 CST 2019
 
 Nombre            Cantidad          Precio
 
-qwertt                  3               100.0
+Narajita                  3               34.0
 
 
-                                                    Total: 100.0
+qwertt                  1               100.0
+
+
+                                                    Total: 202.0

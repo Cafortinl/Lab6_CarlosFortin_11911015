@@ -40,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
             leerInventario();
             System.out.println(inventario);
             actualizarTabla();
+            leerNoFact();
         } catch (ParseException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -920,6 +921,7 @@ public class Principal extends javax.swing.JFrame {
             bw.close();
             fw.close();
             no_fact++;
+            actualizarNoFact();
             cotizados=new ArrayList();
                 Tabla_cot.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -949,6 +951,28 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14MouseClicked
 
+    public void actualizarNoFact() throws IOException{
+        File numero=new File("./Cotizaciones/numero_factura.txt");
+        FileWriter fw=null;
+        BufferedWriter bw=null;
+        try {
+            fw=new FileWriter(numero,false);
+            bw=new BufferedWriter(fw);
+            bw.write(Integer.toString(no_fact));
+        } catch (Exception e) {
+        }
+        bw.close();
+        fw.close();
+    }
+    
+    public void leerNoFact() throws FileNotFoundException{
+        File numero=new File("./Cotizaciones/numero_factura.txt");
+        if(numero.exists()){
+            Scanner leer=new Scanner(numero);
+            no_fact=leer.nextInt();
+        }
+    }
+    
     public void escribir() throws IOException{
         FileWriter fw=null;
         BufferedWriter bw=null;
