@@ -526,6 +526,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar precio"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton11MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSpinner" name="sp_modcant">
         </Component>
@@ -533,6 +536,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modifficar cantidad"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton12MouseClicked"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dc_modvencimiento">
         </Component>
@@ -540,6 +546,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Vencimiento"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton13MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -689,6 +698,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar a Cotizacion"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -699,6 +711,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar producto"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -339,10 +340,25 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton11.setText("Modificar precio");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
 
         jButton12.setText("Modifficar cantidad");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
 
         jButton13.setText("Modificar Vencimiento");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_modificarproductoLayout = new javax.swing.GroupLayout(jd_modificarproducto.getContentPane());
         jd_modificarproducto.getContentPane().setLayout(jd_modificarproductoLayout);
@@ -511,10 +527,20 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton1.setText("Agregar a Cotizacion");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Ver productos cotizados");
 
         jButton3.setText("Eliminar producto");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -590,7 +616,8 @@ public class Principal extends javax.swing.JFrame {
                 String colorantes=tf_colorantes.getText();
                 double precio=Double.parseDouble(tf_precio.getText());
                 int cantidad=Integer.parseInt(sp_cantidad.getValue().toString());
-                String vencimiento=dc_vencimiento.getDate().toString();
+                SimpleDateFormat d=new SimpleDateFormat("dd/MM/yyyy");
+                String vencimiento=d.format(dc_vencimiento.getDate()).toString();
 
                 if(inventario.size()>0){
                     for (Bebida b : inventario) {
@@ -633,50 +660,172 @@ public class Principal extends javax.swing.JFrame {
             jd_modificarproducto.setVisible(true);
             jd_modificarproducto.pack();
             for (Bebida bebida : inventario) {
-                if(Tabla_inventario.getValueAt(0, Tabla_inventario.getSelectedRow()).equals(bebida.getCodigo()))
+                if(Tabla_inventario.getValueAt(Tabla_inventario.getSelectedRow(), 0).equals(bebida.getCodigo())){
                     temp=bebida;
+                    break;
+                }
             }
+            System.out.println(temp);
         }
     }//GEN-LAST:event_jb_modprodMouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        temp.setCodigo(Integer.parseInt(ff_modcod.getText()));
-        ff_modcod.setText("");
+        try {
+            temp.setCodigo(Integer.parseInt(ff_modcod.getText()));
+            ff_modcod.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        temp.setNombre_marca(tf_modmarca.getText());
-        tf_modmarca.setText("");
+        try {
+            temp.setNombre_marca(tf_modmarca.getText());
+            tf_modmarca.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        temp.setNombre_bebida(tf_modnombre.getText());
-        tf_modnombre.setText("");
+        try {
+            temp.setNombre_bebida(tf_modnombre.getText());
+            tf_modnombre.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        temp.setCant_azucar(Double.parseDouble(tf_modcantaz.getText()));
-        tf_modcantaz.setText("");
+        try {
+            temp.setCant_azucar(Double.parseDouble(tf_modcantaz.getText()));
+            tf_modcantaz.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        temp.setCant_alcohol(Double.parseDouble(tf_modcantal.getText()));
-        tf_modcantal.setText("");
+        try {
+            temp.setCant_alcohol(Double.parseDouble(tf_modcantal.getText()));
+            tf_modcantal.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
-        if(cb_modnacional.getSelectedItem().toString().equals("Si"))
-            temp.setNacional(true);
-        else
-            temp.setNacional(false);
-        
-        cb_modnacional.setSelectedIndex(0);
+        try {
+            if(cb_modnacional.getSelectedItem().toString().equals("Si"))
+                temp.setNacional(true);
+            else
+                temp.setNacional(false);
+            escribir();
+            actualizarTabla();
+            
+            cb_modnacional.setSelectedIndex(0);
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton9MouseClicked
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
-        temp.setNo_lote(Integer.parseInt(tf_modlote.getText()));
-        tf_modlote.setText("");
+        try {
+            temp.setNo_lote(Integer.parseInt(tf_modlote.getText()));
+            tf_modlote.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton10MouseClicked
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        try {
+            temp.setPrecio(Double.parseDouble(tf_modprecio.getText()));
+            tf_modprecio.setText("");
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        temp.setCantidad(Integer.parseInt(sp_modcant.getValue().toString()));
+        sp_modcant.setValue(0);
+        temp=null;
+        try {
+            escribir();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        actualizarTabla();
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        try {
+            SimpleDateFormat d=new SimpleDateFormat("dd/MM/yyyy");
+            String vencimiento=d.format(dc_modvencimiento.getDate()).toString();
+            temp.setFecha_vencimiento(vencimiento);
+            dc_modvencimiento.setDate(null);
+            escribir();
+            actualizarTabla();
+            temp=null;
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        if(Tabla_inventario.getSelectedRow()>=0){
+            try {
+                for (Bebida bebida : inventario) {
+                    if(Tabla_inventario.getValueAt(Tabla_inventario.getSelectedRow(), 0).equals(bebida.getCodigo())){
+                        inventario.remove(bebida);
+                        break;
+                    }
+                }
+                escribir();
+                actualizarTabla();
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if(Tabla_inventario.getSelectedRow()>=0){
+                for (Bebida bebida : inventario) {
+                    if(Tabla_inventario.getValueAt(Tabla_inventario.getSelectedRow(), 0).equals(bebida.getCodigo())){
+                        cotizados.add(bebida);
+                        int cantidad=Integer.parseInt(JOptionPane.showInputDialog("Cantidad"));
+                        cotizados.get(cotizados.size()-1).setCantidad(cantidad);
+                        System.out.println(cotizados);
+                        break;
+                    }
+                }
+            
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public void escribir() throws IOException{
         FileWriter fw=null;
@@ -853,6 +1002,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_precio;
     // End of variables declaration//GEN-END:variables
     ArrayList<Bebida> inventario=new ArrayList();
+    ArrayList<Bebida> cotizados=new ArrayList();
     File archivo=new File("./bebidas.txt");
     Bebida temp;
 }

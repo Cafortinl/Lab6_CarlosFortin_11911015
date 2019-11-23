@@ -39,6 +39,7 @@ public class Bebida {
         this.cantidad = cantidad;
         this.fecha_vencimiento = fecha_vencimiento;
         Scanner leer=new Scanner(colorantes);
+        leer.useDelimiter(",");
         while(leer.hasNext()){
             this.colorantes.add(leer.next());
         }
